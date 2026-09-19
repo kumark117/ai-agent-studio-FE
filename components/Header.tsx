@@ -12,10 +12,11 @@ const navLinks = [
 ]
 
 interface HeaderProps {
-  onDemoOpen: () => void
+  onTryDemo: () => void
+  onBookDemo: () => void
 }
 
-export default function Header({ onDemoOpen }: HeaderProps) {
+export default function Header({ onTryDemo, onBookDemo }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -57,9 +58,15 @@ export default function Header({ onDemoOpen }: HeaderProps) {
           </nav>
 
           {/* CTA + mobile toggle */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
-              onClick={onDemoOpen}
+              onClick={onTryDemo}
+              className="hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/15 text-slate-300 hover:text-white hover:border-white/30 font-semibold text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+            >
+              Try Live Demo
+            </button>
+            <button
+              onClick={onBookDemo}
               className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-400/35 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950"
             >
               Book a Demo
@@ -91,8 +98,14 @@ export default function Header({ onDemoOpen }: HeaderProps) {
               </a>
             ))}
             <button
-              onClick={() => { setMenuOpen(false); onDemoOpen() }}
-              className="mt-3 w-full py-2.5 px-3 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm transition-colors"
+              onClick={() => { setMenuOpen(false); onTryDemo() }}
+              className="mt-3 w-full py-2.5 px-3 rounded-lg border border-white/15 text-slate-300 hover:text-white hover:bg-white/5 font-semibold text-sm transition-colors"
+            >
+              Try Live Demo
+            </button>
+            <button
+              onClick={() => { setMenuOpen(false); onBookDemo() }}
+              className="mt-2 w-full py-2.5 px-3 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm transition-colors"
             >
               Book a Demo
             </button>

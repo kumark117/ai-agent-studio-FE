@@ -1,12 +1,13 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react'
 import { demoScenarios, type Channel } from '@/data/demo'
 import Icon from './Icon'
 
 interface DemoModalProps {
   open: boolean
   onClose: () => void
+  initialPhase?: 'pick' | 'booked'
 }
 
 type Phase = 'pick' | 'running' | 'done' | 'booked'
@@ -29,7 +30,7 @@ const colorMap: Record<string, { bg: string; border: string; text: string; ring:
 
 const stageOrder = ['Capture', 'Contact', 'Qualify', 'Follow Up', 'Book', 'Convert']
 
-export default function DemoModal({ open, onClose }: DemoModalProps) {
+export default function DemoModal({ open, onClose, initialPhase = 'pick' }: DemoModalProps) {
   const [channel, setChannel] = useState<Channel | null>(null)
   const [phase, setPhase] = useState<Phase>('pick')
   const [visibleCount, setVisibleCount] = useState(0)
@@ -69,6 +70,11 @@ export default function DemoModal({ open, onClose }: DemoModalProps) {
     document.addEventListener('keydown', handler)
     return () => document.removeEventListener('keydown', handler)
   }, [open, handleClose])
+
+  // Sync phase when modal opens — useLayoutEffect fires before paint so there's no visible flash
+  useLayoutEffect(() => {
+    if (open) setPhase(initialPhase)
+  }, [open, initialPhase])
 
   // Lock body scroll
   useEffect(() => {

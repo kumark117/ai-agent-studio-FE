@@ -17,6 +17,10 @@ import DemoModal from '@/components/DemoModal'
 
 export default function Home() {
   const [demoOpen, setDemoOpen] = useState(false)
+  const [demoInitialPhase, setDemoInitialPhase] = useState<'pick' | 'booked'>('pick')
+
+  const openTryDemo = () => { setDemoInitialPhase('pick'); setDemoOpen(true) }
+  const openBookDemo = () => { setDemoInitialPhase('booked'); setDemoOpen(true) }
 
   return (
     <>
@@ -26,9 +30,9 @@ export default function Home() {
       >
         Skip to main content
       </a>
-      <Header onDemoOpen={() => setDemoOpen(true)} />
+      <Header onTryDemo={openTryDemo} onBookDemo={openBookDemo} />
       <main id="main-content">
-        <Hero onDemoOpen={() => setDemoOpen(true)} />
+        <Hero onDemoOpen={openTryDemo} />
         <Problem />
         <Agents />
         <Workflow />
@@ -37,10 +41,10 @@ export default function Home() {
         <Pricing />
         <Guarantee />
         <Implementation />
-        <FinalCTA onDemoOpen={() => setDemoOpen(true)} />
+        <FinalCTA onDemoOpen={openBookDemo} />
       </main>
       <Footer />
-      <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
+      <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} initialPhase={demoInitialPhase} />
     </>
   )
 }
