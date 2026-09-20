@@ -5,7 +5,7 @@ import { workflowSteps } from '@/data/workflow'
 describe('Workflow', () => {
   it('renders the section heading', () => {
     render(<Workflow />)
-    expect(screen.getByRole('heading', { name: /from first touch to closed deal/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /from first touch to sales-ready handoff/i })).toBeInTheDocument()
   })
 
   it('renders all 6 stage buttons', () => {

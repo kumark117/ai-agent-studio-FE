@@ -28,7 +28,7 @@ export default function Guarantee() {
                 14-Day Guarantee
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                100% Money-Back.<br />If It Doesn't Work.
+                100% Money-Back.{' '}<br />If It Doesn&apos;t Work.
               </h2>
               <p className="text-slate-400 max-w-xl mx-auto text-lg">
                 We're confident in what we build. That's why we back it with a clear, honest guarantee.

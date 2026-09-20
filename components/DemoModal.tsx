@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react'
 import { demoScenarios, type Channel } from '@/data/demo'
+import { BOOKING_URL } from '@/lib/config'
 import Icon from './Icon'
 
 interface DemoModalProps {
@@ -169,6 +170,21 @@ export default function DemoModal({ open, onClose, initialPhase = 'pick' }: Demo
   const handleBook = (e: React.FormEvent) => {
     e.preventDefault()
     if (!name.trim() || !email.trim()) return
+
+    if (BOOKING_URL) {
+      try {
+        const url = new URL(BOOKING_URL)
+        url.searchParams.set('name', name.trim())
+        url.searchParams.set('email', email.trim())
+        window.open(url.toString(), '_blank', 'noopener,noreferrer')
+      } catch {
+        window.open(BOOKING_URL, '_blank', 'noopener,noreferrer')
+      }
+      setSubmitState('success')
+      setPhase('booked')
+      return
+    }
+
     setSubmitState('sending')
     setTimeout(() => {
       setSubmitState('success')
@@ -377,6 +393,7 @@ export default function DemoModal({ open, onClose, initialPhase = 'pick' }: Demo
                 <label htmlFor="demo-name" className="block text-xs font-semibold text-slate-400 mb-1.5">Your Name</label>
                 <input
                   id="demo-name"
+                  name="name"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -389,6 +406,7 @@ export default function DemoModal({ open, onClose, initialPhase = 'pick' }: Demo
                 <label htmlFor="demo-email" className="block text-xs font-semibold text-slate-400 mb-1.5">Work Email</label>
                 <input
                   id="demo-email"
+                  name="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -405,9 +423,9 @@ export default function DemoModal({ open, onClose, initialPhase = 'pick' }: Demo
                 {submitState === 'sending' ? 'Sending…' : 'Request Demo Call'}
               </button>
               <p className="text-center text-xs text-slate-600">
-                This is a demonstration form.{' '}
-                {/* Configure NEXT_PUBLIC_BOOKING_URL in .env.local to wire a real booking endpoint or Calendly link */}
-                Connect your booking URL or endpoint in <code className="font-mono">lib/config.ts</code>.
+                {BOOKING_URL
+                  ? 'Submitting opens our booking calendar in a new tab.'
+                  : <>Set <code className="font-mono">NEXT_PUBLIC_BOOKING_URL</code> in <code className="font-mono">.env.local</code> to connect a real booking link.</>}
               </p>
             </form>
           </div>

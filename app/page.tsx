@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Problem from '@/components/Problem'
@@ -18,9 +18,23 @@ import DemoModal from '@/components/DemoModal'
 export default function Home() {
   const [demoOpen, setDemoOpen] = useState(false)
   const [demoInitialPhase, setDemoInitialPhase] = useState<'pick' | 'booked'>('pick')
+  const demoTriggerRef = useRef<HTMLElement | null>(null)
 
-  const openTryDemo = () => { setDemoInitialPhase('pick'); setDemoOpen(true) }
-  const openBookDemo = () => { setDemoInitialPhase('booked'); setDemoOpen(true) }
+  const openTryDemo = () => {
+    demoTriggerRef.current = document.activeElement as HTMLElement
+    setDemoInitialPhase('pick')
+    setDemoOpen(true)
+  }
+  const openBookDemo = () => {
+    demoTriggerRef.current = document.activeElement as HTMLElement
+    setDemoInitialPhase('booked')
+    setDemoOpen(true)
+  }
+
+  // Restore focus to the triggering button when the modal closes
+  useEffect(() => {
+    if (!demoOpen) demoTriggerRef.current?.focus()
+  }, [demoOpen])
 
   return (
     <>

@@ -16,7 +16,7 @@ export default function Workflow() {
             Six-Stage Lead Journey
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            From First Touch to Closed Deal
+            From First Touch to Sales-Ready Handoff.
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
             Every enquiry moves through a structured pipeline — automated, contextual, and visible at every stage.

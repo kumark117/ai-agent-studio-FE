@@ -33,11 +33,12 @@ export default function Hero({ onDemoOpen }: HeroProps) {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.08] tracking-tight">
-              Your AI Sales Team<br />
+              Your AI Sales Team{' '}
+              <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
                 Just Got Bigger
               </span>
-              <br />
+              {' '}<br />
               <span className="text-slate-200">Without More Headcount</span>
             </h1>
 
@@ -57,7 +58,7 @@ export default function Hero({ onDemoOpen }: HeroProps) {
                 onClick={onDemoOpen}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-base transition-all duration-200 shadow-xl shadow-cyan-500/30 hover:shadow-cyan-400/40 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950"
               >
-                Book a Demo
+                Try Live Demo
                 <Icon name="arrow-right" size={18} />
               </button>
               <a

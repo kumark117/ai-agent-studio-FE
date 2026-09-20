@@ -47,7 +47,7 @@ export default function FinalCTA({ onDemoOpen }: FinalCTAProps) {
 
         <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-slate-500">
           <span className="flex items-center gap-1.5"><Icon name="shield" size={14} className="text-cyan-500" /> 14-day guarantee</span>
-          <span className="flex items-center gap-1.5"><Icon name="zap" size={14} className="text-cyan-500" /> Live in weeks</span>
+          <span className="flex items-center gap-1.5"><Icon name="zap" size={14} className="text-cyan-500" /> Structured four-step rollout.</span>
           <span className="flex items-center gap-1.5"><Icon name="users" size={14} className="text-cyan-500" /> Expert-led setup</span>
         </div>
       </div>

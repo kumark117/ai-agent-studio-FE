@@ -58,7 +58,7 @@ export default function Implementation() {
             Four-Step Rollout
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            From Signed Agreement<br />to Live System
+            From Signed Agreement{' '}<br />to Live System
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
             A structured launch process that gets your AI sales system live without disrupting your business.

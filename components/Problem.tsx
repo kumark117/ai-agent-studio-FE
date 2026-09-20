@@ -66,7 +66,7 @@ export default function Problem() {
         {/* Benefits strip */}
         <div className="mt-16 grid sm:grid-cols-4 gap-3">
           {[
-            { icon: 'zap', label: 'Faster responses', desc: 'AI replies within seconds, 24/7' },
+            { icon: 'zap', label: 'Faster responses', desc: 'AI responds promptly, 24/7' },
             { icon: 'trending-up', label: 'Consistent conversations', desc: 'Every lead gets the same quality experience' },
             { icon: 'check', label: 'Fewer missed follow-ups', desc: 'Automated sequences keep no lead cold' },
             { icon: 'users', label: 'More productive sales team', desc: 'Human effort goes to high-intent prospects only' },
